@@ -1,0 +1,18 @@
+# Distribution / Packaging
+env/
+build/
+dist/
+
+# Logs
+*.log
+
+# Test files
+*.txt
+*.mp4
+*.tmp
+
+# Crap
+*.bak
+code
+
+

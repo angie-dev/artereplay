@@ -304,7 +304,7 @@ def get_program_from_url(url, site_lang):
     
     logger.info("Retrieving API URL for URL {0}".format(url))
 
-    r = parse.parse("http://www.arte.tv/guide/{lang}/{video_id}/{video_name}", url)
+    r = parse.parse("http://www.arte.tv/{lang}/videos/{video_id}/{video_name}", url)
     if r == None: 
         logger.error("Wasn't able to parse URL, exiting...")
         sys.exit(1)
@@ -363,12 +363,13 @@ def get_list_programs(param, max, site_lang):
 # Search programs for search_term
 def get_search_programs(search_term, site_lang):
 
-    url = "http://www.arte.tv/guide/{1}/programs/autocomplete?q={0}&scope=plus7&country={1}".format(search_term, site_lang)
+    url = "http://www.arte.tv/guide/api/api/search/{1}/{0}/1".format(search_term, site_lang)
 
     json_content = get_json_content(url)
 
     search_programs_list = []
-    for program_item in json_content:
+    program_array = json_content['teasers']
+    for program_item in program_array:
         try:
             program = get_program_from_url(program_item['url'], site_lang)
             program['url']=program_item['url']
@@ -410,7 +411,7 @@ def arg_parser():
     subparser = parser.add_subparsers(dest='command')
 
     # Parser used for print commands
-    sub_list_parser = subparser.add_parser('list', help='List most viewed, newest or soon expiring videos in the console or to a file with -f', parents=[log_parser, lang_parser])
+    sub_list_parser = subparser.add_parser('list', help='DEPRECATED - List most viewed, newest or soon expiring videos in the console or to a file with -f', parents=[log_parser, lang_parser])
     sub_list_parser.add_argument('list', choices=['most_viewed','next_expiring','newest'], help='Can be used with -f/--file')
     sub_list_parser.add_argument('-m', '--max', default=10, help='-- max videos to list, default is 10')
     sub_list_parser.add_argument('-f', '--file', help='used with -l/--list option, append list of URLs to a file that can then be used with i-/--inputfile option.')
@@ -525,7 +526,8 @@ if __name__ == '__main__':
     logger = init_logger(args)
     logger.info(args)
     if args.command == 'list':
-        handle_list_command(args)        
+        logger.error("DEPRECATED. For some reason, arte removed this functionality from their new site")
+        #handle_list_command(args)        
     elif args.command == 'download':
         handle_download_command(args)
     elif args.command == 'search':

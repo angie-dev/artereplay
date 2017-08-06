@@ -10,9 +10,11 @@ In particular [trou/arteget](https://github.com/trou/arteget) is a "similar but 
 
 Enjoy downloading those nice programs that you will never have the time to watch ;)
 
+August 6th, 2017 update : arte updated its site. While most functionality is still there, I couldn't find the endpoint for list command. Keeping it as deprecated for now.
+
 ## Examples
 
-* Print the 3 most viewed videos and adds them to a file
+* Print the 3 most viewed videos and adds them to a file - DEPRECATED
     ```
     ./artereplay.py list most_viewed --max 3 -f outputfile.txt
     ```
@@ -33,7 +35,7 @@ Enjoy downloading those nice programs that you will never have the time to watch
     ```
 * Download a list of videos from a file, tries to match subtitles and language, must match quality, downloads to directory
 
-    ````
+    ```
     ./artereplay.py download --subs yes --lang fr --qual HQ -d dirname/ -i inputfile.txt
     ```
 * Same as the above but doesn't download videos, adds downloadable links to a file instead
@@ -42,7 +44,7 @@ Enjoy downloading those nice programs that you will never have the time to watch
     ./artereplay.py download --subs yes --lang es --qual HQ -i inputfile.txt -dlf list_to_dl.txt
     ```
     
-arteplus7 url needs to look like this: http://www.arte.tv/guide/LANG/ID/PROGRAM_NAME
+arteplus7 url needs to look like this: http://www.arte.tv/LANG/videos/PROGRAM_ID/PROGRAM_NAME
 
 ## Logging
 

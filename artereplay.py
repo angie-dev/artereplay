@@ -304,7 +304,7 @@ def get_program_from_url(url, site_lang):
     
     logger.info("Retrieving API URL for URL {0}".format(url))
 
-    r = parse.parse("http://www.arte.tv/{lang}/videos/{video_id}/{video_name}", url)
+    r = parse.parse("https://www.arte.tv/{lang}/videos/{video_id}/{video_name}", url)
     if r == None: 
         logger.error("Wasn't able to parse URL, exiting...")
         sys.exit(1)

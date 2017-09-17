@@ -46,6 +46,23 @@ August 6th, 2017 update : arte updated its site. While most functionality is sti
     
 arteplus7 url needs to look like this: http://www.arte.tv/LANG/videos/PROGRAM_ID/PROGRAM_NAME
 
+## Usage with Docker
+
+To avoid installing virtualenv and python modules, a Dockerfile is provided.
+
+* Build the image
+    ```
+    docker build -t <image-name> .
+    ```
+* Run the image in a container for searching
+    ```
+    docker run --rm -ti --name <container-name> <image-name> search <keyword>
+    ```
+* Run the image in a container for downloading. You have to bind-mount your host directory to the container's /app. As a result -d option is useless.
+    ```
+    docker run --rm -ti -v <local_path_to_download_videos>:/app --name <container-name> <image-name> download <any other options> <video url>
+    ```
+
 ## Logging
 
 * ` -v -vv -vvv` control the info level on the console, default is ERROR, -v is WARNING, -vv is INFO and -vvv is DEBUG

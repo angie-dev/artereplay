@@ -8,12 +8,7 @@ test/
 *.log
 
 # Test files
-*.txt
 *.mp4
 *.tmp
-
-# Crap
-*.bak
-code
 
 

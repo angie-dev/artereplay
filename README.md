@@ -58,9 +58,9 @@ To avoid installing virtualenv and python modules, a Dockerfile is provided.
     ```
     docker run --rm -ti --name <container-name> <image-name> search <keyword>
     ```
-* Run the image in a container for downloading. You have to bind-mount your host directory to the container's /app. As a result -d option is useless.
+* Run the image in a container for downloading. You have to bind-mount your host directory to the container's /app.
     ```
-    docker run --rm -ti -v <local_path_to_download_videos>:/app --name <container-name> <image-name> download <any other options> <video url>
+    docker run --rm -ti -v <local_path_to_download_videos>:/app/<download-dir> --name <container-name> <image-name> download <any other options> <video url> -d /app/<download-dir>
     ```
 
 ## Logging
